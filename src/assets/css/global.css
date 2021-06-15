@@ -1,0 +1,18 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/**解决element表格不对齐*/
+.el-table th.gutter {
+  display: table-cell !important;
+}
+
+/**卡片视图与顶部的位置*/
+.el-breadcrumb {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
