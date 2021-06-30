@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 const Login = () => import('@/components/Login.vue')
+const Welcome = () => import('@/components/Welcome.vue')
 const Home = () => import('@/components/Home.vue')
+const User = () => import('@/components/user/User.vue')
+const Rights = () => import('@/components/power/Rights.vue')
+const Roles = () => import('@/components/power/Roles.vue')
 
 Vue.use(VueRouter)
 
@@ -20,7 +24,18 @@ VueRouter.prototype.replace = function replace(location) {
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
-  { path: '/home', component: Home }
+
+  {
+    path: '/home',
+    redirect: '/wlecome',
+    component: Home,
+    children: [
+      { path: '/wlecome', component: Welcome },
+      { path: '/users', component: User },
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles }
+    ]
+  }
 ]
 
 const router = new VueRouter({
