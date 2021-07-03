@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 //elemnet组件
 import './plugins/element'
+// 树形表格组件
+import './plugins/tree-table'
 //第三方字体
 import 'font-awesome/css/font-awesome.css'
 

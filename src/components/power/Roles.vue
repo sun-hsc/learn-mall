@@ -110,6 +110,11 @@
       width="50%"
       @close="setRightDialogClosed"
     >
+      <!-- 
+      default-expanded-keys 默认展开的节点的 key 的数组
+      default-expand-all	是否默认展开所有节点
+      node-key	每个树节点用来作为唯一标识的属性，整棵树应该是唯一的
+      -->
       <el-tree
         :data="rightsList"
         :props="treeProps"
@@ -190,12 +195,15 @@ export default {
       // 权限列表
       rightsList: [],
       //  树形控件的属性绑定对象
+      /* label	指定节点标签为节点对象的某个属性值 
+       children	指定子树为节点对象的某个属性值
+       */
       treeProps: {
         label: 'authName',
         children: 'children'
       },
-      //   默认选中节点ID值
-      defKeys: [30],
+      //  树形组件 默认选中节点ID值   []各个层级的id
+      defKeys: [],
       //   当前即将分配权限的Id
       roleId: 0,
       // 添加角色对话框
