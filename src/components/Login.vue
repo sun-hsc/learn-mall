@@ -15,11 +15,7 @@
         </el-form-item>
 
         <el-form-item prop="password">
-          <el-input
-            placeholder="密码"
-            type="password"
-            v-model="loginForm.password"
-          >
+          <el-input placeholder="密码" type="password" v-model="loginForm.password">
             <template slot="prepend">
               <i class="fa fa-lock" aria-hidden="true"></i>
             </template>
@@ -46,18 +42,14 @@ export default {
         password: '123456'
       },
       loginFormRules: {
-        username: [
-          { trigger: 'blur', validator: validateUsername, required: true }
-        ],
-        password: [
-          { trigger: 'blur', validator: validatePassword, required: true }
-        ]
+        username: [{ trigger: 'blur', validator: validateUsername, required: true }],
+        password: [{ trigger: 'blur', validator: validatePassword, required: true }]
       }
     }
   },
   methods: {
     resetLoginForm() {
-      //console.log(this)
+      // console.log(this)
       // resetFields：element-ui提供的表单方法
       this.$refs.loginFormRef.resetFields()
     },

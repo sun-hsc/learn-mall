@@ -9,6 +9,8 @@ const Rights = () => import('@/components/power/Rights.vue')
 const Roles = () => import('@/components/power/Roles.vue')
 const Report = () => import('@/components/report/Report.vue')
 const Cate = () => import('@/components/goods/Cate.vue')
+const Params = () => import('@/components/goods/Params.vue')
+const List = () => import('@/components/goods/List.vue')
 
 Vue.use(VueRouter)
 
@@ -26,7 +28,6 @@ VueRouter.prototype.replace = function replace(location) {
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
-
   {
     path: '/home',
     redirect: '/wlecome',
@@ -36,8 +37,10 @@ const routes = [
       { path: '/users', component: User },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
+      { path: '/reports', component: Report },
       { path: '/categories', component: Cate },
-      { path: '/reports', component: Report }
+      { path: '/params', component: Params },
+      { path: '/goods', component: List }
     ]
   }
 ]

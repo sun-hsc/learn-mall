@@ -13,17 +13,11 @@
       <el-row :gutter="20">
         <el-col :span="8">
           <el-input placeholder="请输入内容" v-model="queryInfo.query">
-            <el-button
-              slot="append"
-              icon="el-icon-search"
-              @click="getUserList()"
-            ></el-button>
+            <el-button slot="append" icon="el-icon-search" @click="getUserList()"></el-button>
           </el-input>
         </el-col>
         <el-col :span="6">
-          <el-button type="primary" @click="addDialogVisible = true"
-            >添加用户</el-button
-          >
+          <el-button type="primary" @click="addDialogVisible = true">添加用户</el-button>
         </el-col>
       </el-row>
 
@@ -63,12 +57,7 @@
             ></el-button>
 
             <!--按钮提示  enterable鼠标进入到提示区域后文本隐藏-->
-            <el-tooltip
-              effect="dark"
-              content="分配用户账号"
-              placement="top"
-              :enterable="false"
-            >
+            <el-tooltip effect="dark" content="分配用户账号" placement="top" :enterable="false">
               <!--分配账号-->
               <el-button
                 type="warning"
@@ -211,14 +200,10 @@ export default {
         email: '',
         mobile: ''
       },
-      //添加表单验证规则
+      // 添加表单验证规则
       addUserFormRules: {
-        username: [
-          { required: true, trigger: 'blur', validator: validateUsername }
-        ],
-        password: [
-          { required: true, trigger: 'blur', validator: validatePassword }
-        ],
+        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
         mobile: [{ required: true, trigger: 'blur', validator: validatePhone }]
       },
@@ -244,7 +229,7 @@ export default {
     this.getUserList()
   },
   methods: {
-    //获取用户数据列表
+    // 获取用户数据列表
     async getUserList() {
       const { data: res } = await this.$http.get('users', {
         params: this.queryInfo
@@ -255,7 +240,7 @@ export default {
       }
       this.userlist = res.data.users
       this.total = res.data.total
-      //console.log(res.data)
+      // console.log(res.data)
     },
     // 监听 pagesize改变的事件
     handleSizeChange(newSize) {
@@ -269,18 +254,18 @@ export default {
     },
     // 监听 switch开关 状态改变
     async userStateChanged(userInfo) {
-      //console.log(userInfo)
+      // console.log(userInfo)
       const { data: res } = await this.$http.put(
         `users/${userInfo.id}/state/${userInfo.mg_state}`
       )
       if (res.meta.status !== 200) {
-        //失败还原修改前的状态
+        // 失败还原修改前的状态
         userInfo.mg_state = !userInfo.mg_state
         return this.$message.error('更新用户状态失败')
       }
       this.$message.success('更新用户状态成功！')
     },
-    //关闭添加用户对话框时清空内容
+    // 关闭添加用户对话框时清空内容
     addDialogClosed() {
       this.$refs.addUserFormRef.resetFields()
     },
@@ -315,13 +300,10 @@ export default {
     editUser() {
       this.$refs.editUserFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.put(
-          'users/' + this.editUserForm.id,
-          {
-            email: this.editUserForm.email,
-            mobile: this.editUserForm.mobile
-          }
-        )
+        const { data: res } = await this.$http.put('users/' + this.editUserForm.id, {
+          email: this.editUserForm.email,
+          mobile: this.editUserForm.mobile
+        })
         if (res.meta.status !== 200) {
           this.$message.error('更新用户信息失败！')
         }
@@ -332,15 +314,11 @@ export default {
     },
     // 删除用户
     async removeUserById(id) {
-      const confirmResult = await this.$confirm(
-        '此操作将永久删除该信息, 是否继续?',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm('此操作将永久删除该信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
       // 点击确定 返回值为：confirm
       // 点击取消 返回值为： cancel
       if (confirmResult !== 'confirm') {
@@ -366,9 +344,7 @@ export default {
       if (!this.selectRoleId) {
         this.$message.error('请选择要分配的角色')
       }
-      const {
-        data: res
-      } = await this.$http.put(`users/${this.userInfo.id}/role`, {
+      const { data: res } = await this.$http.put(`users/${this.userInfo.id}/role`, {
         rid: this.selectRoleId
       })
       if (res.meta.status !== 200) {

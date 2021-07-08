@@ -33,11 +33,7 @@
           <!-- router -> 导航开启路由模式 -->
           <!--:default-active="$route.path" 通过$route.path获取活跃的路由绑定高亮-->
           <!-- 一级菜单的模板区域 -->
-          <el-submenu
-            v-for="item in menuList"
-            :index="item.id + ''"
-            :key="item.id"
-          >
+          <el-submenu v-for="item in menuList" :index="item.id + ''" :key="item.id">
             <template slot="title">
               <!--图标-->
               <i :class="iconsObj[item.id]" aria-hidden="true"></i> &nbsp;
@@ -98,7 +94,7 @@ export default {
       window.sessionStorage.clear()
       this.$router.push('/login')
     },
-    //导航栏折叠
+    // 导航栏折叠
     togleCollapse() {
       this.isCollapse = !this.isCollapse
     },
@@ -107,7 +103,7 @@ export default {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menuList = res.data
-      //console.log(res.data)
+      // console.log(res.data)
     }
   }
 }

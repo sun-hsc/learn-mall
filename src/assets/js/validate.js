@@ -78,7 +78,7 @@ export function validateIdNumber(rule, value, callback) {
   }, 100)
 }
 
-/**车牌号验证 */
+/** 车牌号验证 */
 export function validateCarNum(rule, value, callback) {
   const carNumReg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
   if (!value) {
@@ -102,7 +102,7 @@ export function validateCarName(rule, value, callback) {
   }
 }
 
-/*日期 0000-00-00 */
+/* 日期 0000-00-00 */
 export function validateDate(rule, value, callback) {
   const dateReg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/
   if (!value) {
