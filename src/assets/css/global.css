@@ -7,9 +7,10 @@ body,
 }
 
 /**解决element表格内容居中 */
-.el-table td, .el-table th {
+.el-table td,
+.el-table th {
   text-align: center;
-} 
+}
 
 /**解决element表格不对齐*/
 .el-table th.gutter {
@@ -25,4 +26,8 @@ body,
 .el-table {
   margin-top: 15px;
   font-size: 12px;
+}
+
+.ql-editor {
+  min-height: 300px;
 }

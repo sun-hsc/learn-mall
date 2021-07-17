@@ -35,7 +35,11 @@
         ></el-table-column>
         <el-table-column label="商品重量" prop="goods_weight" width="78px"></el-table-column>
         <el-table-column label="商品数量" prop="goods_number" width="78px"></el-table-column>
-        <el-table-column label="创建时间" prop="upd_time" width="136px"></el-table-column>
+        <el-table-column label="创建时间" width="160px">
+          <template v-slot="scope">
+            {{ scope.row.add_time | formatDate }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="120px">
           <template v-slot="scope">
             <!--v-slot="scope"  作用域插槽绑定用于绑定对应的数据-->
@@ -91,6 +95,22 @@ export default {
     this.handleSizeChange(10)
     this.handleCurrentChange(1)
   },
+  // 过滤器
+  filters: {
+    /**
+    dataFormat(originVal) {
+      const dt = new Date(originVal)
+      const y = dt.getFullYear()
+      const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+      const d = (dt.getDate() + '').padStart(2, '0')
+      const hh = (dt.getHours() + '').padStart(2, '0')
+      const mm = (dt.getMinutes() + '').padStart(2, '0')
+      const ss = (dt.getSeconds() + '').padStart(2, '0')
+      // yyyy-mm-dd hh:mm:ss
+      return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+    }
+    */
+  },
   methods: {
     async getGoodsList() {
       const { data: res } = await this.$http.get('goods', { params: this.queryInfo })
@@ -98,7 +118,7 @@ export default {
         this.$message.console.error('获取商品列表失败')
       }
       this.goodsList = res.data.goods
-      console.log(res)
+      // console.log(res)
       this.total = res.data.total
     },
     handleSizeChange(newSize) {
@@ -110,8 +130,27 @@ export default {
       this.getGoodsList()
     },
     showEditDialog(id) {},
-    removeUserById(id) {},
-    goAddPage() {}
+    removeUserById(id) {
+      this.$confirm('此操作将永久删除该参数, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        return new Promise((resolve, reject) => {
+          let res = this.$http.delete(`goods/${id}`)
+          resolve(res)
+        })
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      })
+    },
+    goAddPage() {
+      this.$router.push('/goods/add')
+    }
   }
 }
 </script>

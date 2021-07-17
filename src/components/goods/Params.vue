@@ -233,6 +233,7 @@ export default {
         value: 'cat_id',
         label: 'cat_name',
         children: 'children'
+        // checkStrictly: true
       },
       //   激活页签名称
       activeTabsName: 'many',
@@ -416,7 +417,8 @@ export default {
           this.getParamsData()
         })
         .catch(err => {
-          console.log(err)
+          this.$message.success(err)
+          // console.log(err)
         })
     },
     // 点击按钮显示输入框
@@ -475,6 +477,10 @@ export default {
 <style lang="less" scoped>
 .el-alert {
   margin-bottom: 10px;
+}
+
+.el-cascader {
+  width: 25%;
 }
 
 .el-tag {

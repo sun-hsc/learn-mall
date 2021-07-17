@@ -8,6 +8,8 @@ import './plugins/element'
 import './plugins/tree-table'
 // 第三方字体
 import 'font-awesome/css/font-awesome.css'
+// 过滤器
+import './assets/js/filter'
 
 import axios from 'axios'
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1'

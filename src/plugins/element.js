@@ -16,12 +16,16 @@ import {
   Card,
   Table,
   TableColumn,
+  MenuItemGroup,
+  MenuItem,
+  Menu,
   Row,
   Col,
   Switch,
   Pagination,
   Dialog,
   MessageBox,
+  Message,
   Tag,
   Tree,
   Select,
@@ -29,11 +33,16 @@ import {
   Cascader,
   Alert,
   Tabs,
-  TabPane
+  TabPane,
+  Submenu,
+  Steps,
+  Step,
+  Checkbox,
+  CheckboxGroup,
+  Upload
 } from 'element-ui'
-import { Submenu, MenuItemGroup, MenuItem, Menu } from 'element-ui'
-//需要全局挂载
-import { Message } from 'element-ui'
+
+// 需要全局挂载
 
 Vue.use(Button)
 Vue.use(Form)
@@ -66,6 +75,11 @@ Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Upload)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
