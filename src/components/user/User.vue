@@ -181,7 +181,7 @@ import {
   validatePassword,
   validateEmail,
   validatePhone
-} from '@/assets/js/validate'
+} from '@/plugins/other/validate'
 
 export default {
   name: 'User',

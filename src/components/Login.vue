@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { validateUsername, validatePassword } from '@/assets/js/validate'
+import { validateUsername, validatePassword } from '@/plugins/other/validate'
 export default {
   name: 'Login',
   data() {

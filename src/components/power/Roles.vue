@@ -42,7 +42,10 @@
                 >
                   <!--二级权限-->
                   <el-col :span="6">
-                    <el-tag closable type="success" @close="removeRightById(scope.row, item2.id)"
+                    <el-tag
+                      closable
+                      type="success"
+                      @close="removeRightById(scope.row, item2.id)"
                       >{{ item2.authName }}
                     </el-tag>
                     <i class="el-icon-caret-right"></i>
@@ -263,6 +266,7 @@ export default {
       this.rightsList = res.data
       this.getLeafkeys(role, this.defKeys)
       this.setRightDialogVisible = true
+      console.log(res.data)
     },
     // 通过递归 获取角色下三级权限的 id, 并保存到defKeys数组
     getLeafkeys(node, arr) {
@@ -285,7 +289,9 @@ export default {
       ]
       // join() 方法用于把数组中的所有元素放入一个字符串
       const idStr = keys.join(',')
-      const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, { rids: idStr })
+      const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, {
+        rids: idStr
+      })
       if (res.meta.status !== 200) {
         return this.$message.error('分配权限失败！')
       }

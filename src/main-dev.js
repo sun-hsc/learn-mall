@@ -9,15 +9,25 @@ import './plugins/tree-table'
 // 第三方字体
 import 'font-awesome/css/font-awesome.css'
 // 过滤器
-import './assets/js/filter'
+import './plugins/other/filter'
+// 导入NProgress, 包对应的JS和CSS
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 import axios from 'axios'
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1'
 axios.interceptors.request.use(config => {
+  // 在request 拦截器中, 展示进度条 NProgress.start()
+  NProgress.start()
   // console.log(config)
   // 为请求头对象，添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 在最后必须 return config
+  return config
+})
+// response 拦截器中,  隐藏进度条NProgress.done()
+axios.interceptors.response.use(config => {
+  NProgress.done()
   return config
 })
 // prototype 通过原型挂vue上
