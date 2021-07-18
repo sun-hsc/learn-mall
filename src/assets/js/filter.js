@@ -22,3 +22,9 @@ Vue.filter('dataFormat', function(originVal) {
   // yyyy-mm-dd hh:mm:ss
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
+
+// 价格展示过滤
+Vue.filter('showPrice', price => {
+  // 过滤器，保留小数点输出
+  return '￥' + price.toFixed(1)
+})
